@@ -3,6 +3,7 @@ import subprocess
 from pathlib import Path
 
 
+# Clear the terminal based on your operating system
 def clear_terminal():
     if os.name == "nt":
         subprocess.run("cls", shell=True, check=False)
@@ -10,12 +11,14 @@ def clear_terminal():
         subprocess.run(["clear"], check=False)
 
 
+# Prints the ASCII art logo for the game
 def print_logo():
     logo_path = Path(__file__).resolve().parent / "assets" / "game_logo.md"
     print(logo_path.read_text(encoding="utf-8"))
     print(" ")
 
 
+# Prints the ASCII art logo if player 1 wins
 def print_player_one_wins():
     clear_terminal()
     player_1_wins = Path(__file__).resolve().parent / "assets" / "player_1_wins.md"
@@ -23,6 +26,7 @@ def print_player_one_wins():
     print(" ")
 
 
+# Prints the ASCII art logo if player 2 wins.
 def print_player_two_wins():
     clear_terminal()
     player_2_wins = Path(__file__).resolve().parent / "assets" / "player_2_wins.md"
@@ -30,6 +34,7 @@ def print_player_two_wins():
     print(" ")
 
 
+# Prints the ASCII art logo if a draw happens
 def print_draw():
     clear_terminal()
     draw = Path(__file__).resolve().parent / "assets" / "draw.md"
@@ -37,6 +42,7 @@ def print_draw():
     print(" ")
 
 
+# Let the player choose a game mode
 def choose_game_mode() -> int:
     print_logo()
     print("1.) Player 1 vs Player 2")
@@ -50,6 +56,7 @@ def choose_game_mode() -> int:
     return int(user_input)
 
 
+# Print the game board with the current state
 def print_game_board(game: dict[int, int], player_one_symbol: str):
     clear_terminal()
     print_logo()
@@ -77,6 +84,7 @@ def print_game_board(game: dict[int, int], player_one_symbol: str):
     print(border)
 
 
+# Let player 1 choose between X or O as his symbol
 def print_player_one_select() -> str:
     clear_terminal()
     print_logo()
@@ -87,6 +95,7 @@ def print_player_one_select() -> str:
     return choice
 
 
+# Let the player choose a field where he can put his symbol.
 def choose_field(game: dict[int, int], player: int, symbol: str) -> int:
     while True:
         user_input = input(
@@ -107,6 +116,7 @@ def choose_field(game: dict[int, int], player: int, symbol: str) -> int:
             return field
 
 
+# Validate if player has won the game
 def has_player_won(game: dict[int, int], player: int) -> bool:
     winning_lines = (
         (1, 2, 3),
@@ -121,6 +131,7 @@ def has_player_won(game: dict[int, int], player: int) -> bool:
     return any(all(game[field] == player for field in line) for line in winning_lines)
 
 
+# Start player versus player game mode
 def run_player_vs_player_game():
     game_board = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0}
     player_one_symbol = print_player_one_select()
@@ -152,6 +163,7 @@ def run_player_vs_player_game():
         current_player = 2 if current_player == 1 else 1
 
 
+# Start the player versus computer game mode
 def run_player_vs_computer():
     clear_terminal()
     print_logo()
