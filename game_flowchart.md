@@ -1,26 +1,35 @@
-# Flussdiagramm: Tic-Tac-Toe
+# Flussdiagramm: aktueller Spielablauf
 
 ```mermaid
 flowchart TD
-    A([Start: python main.py]) --> C[Spieler 1 wählt X oder O]
-    C --> D[Spieler 2 erhält das andere Symbol]
-    D --> B[Leeres Spielfeld mit neun Feldern erstellen]
-    B --> E[Spieler 1 beginnt]
-    E --> F[Spielfeld anzeigen]
-    F --> G[Aktuellen Spieler nach einer Position fragen]
-    G --> H{Feld bereits belegt?}
-    H -- Ja --> I[Erneut nach einer Position fragen]
-    I --> G
-    H -- Nein --> J[Symbol auf das Feld setzen]
-    J --> K[Aktualisiertes Spielfeld anzeigen]
-    K --> L{Hat der aktuelle Spieler gewonnen?}
-    L -- Ja --> M[Gewinner anzeigen]
-    M --> N([Spielende])
-    L -- Nein --> O{Sind alle Felder belegt?}
-    O -- Ja --> P[Unentschieden anzeigen]
-    P --> N
-    O -- Nein --> Q[Zum anderen Spieler wechseln]
-    Q --> G
+    Start(["Start: python tic_tac_toe.py"]) --> Menu["Terminal leeren, Logo und Spielmodi anzeigen"]
+    Menu --> Mode{"Spielmodus wählen"}
+    Mode -- "2: gegen Computer" --> Placeholder["Hinweis: Modus noch nicht fertig"]
+    Placeholder --> Enter["Auf Eingabe warten"]
+    Enter --> Menu
+
+    Mode -- "1: gegen Spieler 2" --> Init["Spielfeld als Dictionary erstellen: Felder 1 bis 9 haben Wert 0"]
+    Init --> Symbol["Spieler 1 nach X oder O fragen"]
+    Symbol --> ValidSymbol{"X oder O gewählt?"}
+    ValidSymbol -- Nein --> Symbol
+    ValidSymbol -- Ja --> Setup["Spieler 2 erhält das andere Symbol; Spieler 1 beginnt"]
+    Setup --> Board["Spielfeld mit freien Feldnummern und farbigen Symbolen anzeigen"]
+
+    Board --> Field["Aktuellen Spieler nach einem Feld fragen"]
+    Field --> ValidField{"Zahl von 1 bis 9?"}
+    ValidField -- Nein --> Field
+    ValidField -- Ja --> FreeField{"Feld noch frei?"}
+    FreeField -- Nein --> Field
+    FreeField -- Ja --> SetField["Spielernummer 1 oder 2 im Dictionary speichern"]
+
+    SetField --> Won{"Hat der aktuelle Spieler gewonnen?"}
+    Won -- Ja --> WinScreen["Terminal leeren und Gewinnergrafik für Spieler 1 oder 2 anzeigen"]
+    WinScreen --> End([Spielende])
+    Won -- Nein --> Full{"Alle Felder belegt?"}
+    Full -- Ja --> Draw["Aktuelles Spielfeld und Unentschieden anzeigen"]
+    Draw --> End
+    Full -- Nein --> Next["Zum anderen Spieler wechseln"]
+    Next --> Board
 ```
 
-Die Prüfung auf ein bereits belegtes Feld ist eine optionale Erweiterung aus der Aufgabenstellung. Weitere Eingabefehler und zusätzliche Spielrunden sind hier nicht dargestellt.
+Hinweis zum aktuellen Code: Bei einer ungültigen **Spielmoduswahl** wird das Menü zwar erneut aufgerufen, das Ergebnis dieses Aufrufs aber nicht zurückgegeben. Dadurch kann anschließend ein Fehler entstehen. Die Eingabeprüfung für die **Spielfelder** wiederholt die Frage dagegen korrekt.
