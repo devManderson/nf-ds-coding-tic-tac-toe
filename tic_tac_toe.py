@@ -29,15 +29,22 @@ def choose_game_mode(user_input_was_wrong: bool = False) -> int:
     return int(user_input)
 
 
-def print_game_board(game: dict[int, int]):
+def print_game_board(game: dict[int, int], player_one_symbol: str):
     clear_terminal()
     print_logo()
 
-    symbols = {1: "X", 2: "O"}
-    cells = [
-        str(position) if game[position] == 0 else symbols[game[position]]
-        for position in range(1, 10)
-    ]
+    player_two_symbol = "O" if player_one_symbol == "X" else "X"
+    print(f"Player 1: {player_one_symbol} | Player 2: {player_two_symbol}")
+    print()
+
+    cells = []
+    for position in range(1, 10):
+        if game[position] == 0:
+            cells.append(str(position))
+        elif game[position] == 1:
+            cells.append(player_one_symbol)
+        else:
+            cells.append(player_two_symbol)
 
     border = "+---+---+---+"
     for row in (0, 3, 6):
@@ -46,14 +53,20 @@ def print_game_board(game: dict[int, int]):
     print(border)
 
 
-def print_player_one_select():
-    pass
+def print_player_one_select() -> str:
+    clear_terminal()
+    print_logo()
+    choice = input("Player 1, choose your symbol [X or O]: ").strip().upper()
+    if choice not in ("X", "O"):
+        print("Please enter X or O.")
+        return print_player_one_select()
+    return choice
 
 
 def run_player_vs_player_game():
     game_board = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0}
-    user_input = print_player_one_select()
-    print_game_board(game_board)
+    player_one_symbol = print_player_one_select()
+    print_game_board(game_board, player_one_symbol)
 
 
 def run_player_vs_computer():
