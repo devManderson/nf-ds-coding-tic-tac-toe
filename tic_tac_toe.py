@@ -1,24 +1,6 @@
-# In this script you can write your code.
-# Start by writing all the functions.
-# In the last part after if __name__ == "__main__": you can call the functions to play your game.
-# If you run `uv run python tic_tac_toe.py` in the command line the game will start. Try it out! ;)
-
 import os
 import subprocess
 from pathlib import Path
-
-
-# Function for ... (displaying the board?)
-def blabla():
-    pass
-
-
-# Function for... (choosing a player?)
-def blablabla():
-    pass
-
-
-# ... write as many functions as you need
 
 
 def clear_terminal():
@@ -48,18 +30,29 @@ def choose_game_mode(user_input_was_wrong: bool = False) -> int:
 
 
 def print_game_board(game: dict[int, int]):
-    symbols = {1: "X", 2: "O"}
-    cells = [str(position) if game[position] == 0 else symbols[game[position]]
-             for position in range(1, 10)]
+    clear_terminal()
+    print_logo()
 
+    symbols = {1: "X", 2: "O"}
+    cells = [
+        str(position) if game[position] == 0 else symbols[game[position]]
+        for position in range(1, 10)
+    ]
+
+    border = "+---+---+---+"
     for row in (0, 3, 6):
-        print(f" {cells[row]} | {cells[row + 1]} | {cells[row + 2]} ")
-        if row < 6:
-            print("---+---+---")
+        print(border)
+        print(f"| {cells[row]} | {cells[row + 1]} | {cells[row + 2]} |")
+    print(border)
+
+
+def print_player_one_select():
+    pass
 
 
 def run_player_vs_player_game():
     game_board = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0}
+    user_input = print_player_one_select()
     print_game_board(game_board)
 
 
