@@ -1,6 +1,7 @@
 # Flussdiagramm: aktueller Spielablauf
 
 ```mermaid
+%%{init: {"flowchart": {"curve": "step"}}}%%
 flowchart TD
     Start(["Start: python tic_tac_toe.py"]) --> Menu["Terminal leeren, Logo und Spielmodi anzeigen"]
     Menu --> Mode{"Spielmodus wählen"}
