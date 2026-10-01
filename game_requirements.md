@@ -2,8 +2,8 @@
 
 ## Pflichtanforderungen
 
-- [ ] Das vollständige Spiel ist in einer einzigen Python-Datei `main.py` implementiert.
-- [ ] Das Spiel lässt sich im Terminal mit `python main.py` starten.
+- [ ] Das vollständige Spiel ist in einer einzigen Python-Datei `tic_tac_toe.py` implementiert.
+- [ ] Das Spiel lässt sich im Terminal mit `python tic_tac_toe.py` starten.
 - [ ] Zwei Personen können gegeneinander spielen.
 - [ ] Ein Spielfeld mit neun Feldern wird angezeigt und nach jedem Zug aktualisiert.
 - [ ] Spieler 1 wählt zu Beginn `X` oder `O`; Spieler 2 erhält das jeweils andere Symbol.
@@ -16,7 +16,7 @@
 ## Hinweise zur Umsetzung
 
 - [ ] Vor dem Programmieren wird der Spielablauf als Pseudocode oder Flussdiagramm geplant.
-- [ ] Der Code wird in kleine Funktionen mit aussagekräftigen Namen aufgeteilt, zum Beispiel für Spielfeldanzeige, Eingabe und Ergebnisprüfung. Alle Funktionen bleiben in `main.py`.
+- [ ] Der Code wird in kleine Funktionen mit aussagekräftigen Namen aufgeteilt, zum Beispiel für Spielfeldanzeige, Eingabe und Ergebnisprüfung. Alle Funktionen bleiben in `tic_tac_toe.py`.
 - [ ] Die Funktionen werden schrittweise umgesetzt und beim Entwickeln ausprobiert.
 
 ## Optionale Erweiterungen
