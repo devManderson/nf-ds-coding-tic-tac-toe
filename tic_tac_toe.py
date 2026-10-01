@@ -172,6 +172,7 @@ def run_player_vs_computer():
     runGame()
 
 
+# Main function, starts the game.
 def runGame():
     clear_terminal()
 
