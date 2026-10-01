@@ -34,7 +34,10 @@ def print_game_board(game: dict[int, int], player_one_symbol: str):
     print_logo()
 
     player_two_symbol = "O" if player_one_symbol == "X" else "X"
-    print(f"Player 1: {player_one_symbol} | Player 2: {player_two_symbol}")
+    print(
+        f"Player 1: \033[34m{player_one_symbol}\033[0m | "
+        f"Player 2: \033[31m{player_two_symbol}\033[0m"
+    )
     print()
 
     cells = []
