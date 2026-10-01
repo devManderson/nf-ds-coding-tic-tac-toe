@@ -16,6 +16,27 @@ def print_logo():
     print(" ")
 
 
+def print_player_one_wins():
+    clear_terminal()
+    player_1_wins = Path(__file__).resolve().parent / "assets" / "player_1_wins.md"
+    print(player_1_wins.read_text(encoding="utf-8"))
+    print(" ")
+
+
+def print_player_two_wins():
+    clear_terminal()
+    player_2_wins = Path(__file__).resolve().parent / "assets" / "player_2_wins.md"
+    print(player_2_wins.read_text(encoding="utf-8"))
+    print(" ")
+
+
+def print_draw():
+    clear_terminal()
+    draw = Path(__file__).resolve().parent / "assets" / "draw.md"
+    print(draw.read_text(encoding="utf-8"))
+    print(" ")
+
+
 def choose_game_mode() -> int:
     print_logo()
     print("1.) Player 1 vs Player 2")
@@ -113,8 +134,14 @@ def run_player_vs_player_game():
         game_board[field] = current_player
 
         if has_player_won(game_board, current_player):
-            print_game_board(game_board, player_one_symbol)
-            print(f"\033[32mPlayer {current_player} ({symbol}) wins!\033[0m")
+            if current_player == 1:
+                print_player_one_wins()
+            elif current_player == 2:
+                print_player_two_wins()
+            else:
+                print_game_board(game_board, player_one_symbol)
+                print(f"\033[32mPlayer {current_player} ({symbol}) wins!\033[0m")
+
             return
 
         if all(value != 0 for value in game_board.values()):
